@@ -1,12 +1,12 @@
 <template>
-  <DefaultField :field="field" :errors="errors" :show-help-text="showHelpText">
+  <DefaultField :field="currentField" :errors="errors" :show-help-text="showHelpText">
     <template #field>
       <input
-        :id="field.attribute"
+        :id="currentField.attribute"
         type="text"
-        class="w-full form-control form-input form-input-bordered"
+        class="w-full form-control form-input form-control-bordered"
         :class="errorClasses"
-        :placeholder="field.name"
+        :placeholder="currentField.name"
         v-model="value"
       />
     </template>
@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import { FormField, HandlesValidationErrors } from 'laravel-nova'
+import { DependentFormField, HandlesValidationErrors } from 'laravel-nova'
 import Inputmask from "inputmask"
 
 export default {
-  mixins: [FormField, HandlesValidationErrors],
+  mixins: [DependentFormField, HandlesValidationErrors],
 
   props: ['resourceName', 'resourceId', 'field'],
 
